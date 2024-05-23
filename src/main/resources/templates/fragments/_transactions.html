@@ -1,0 +1,35 @@
+<div class="container mt-5" th:fragment="transactions" xmlns="http://www.w3.org/1999/html">
+    <div class="cartItems-items">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Purchase Date</th>
+                    <th>Total Price</th>
+                    <th>Payment Type</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="cart-item" th:each="transaction : ${transactions}">
+                    <td><span th:text="${transaction.purchaseDate}"></span></td>
+                    <td>$<span th:text="${transaction.finalPrice}"></span></td>
+                    <td><span th:text="${transaction.type}">60</span></td>
+                    <td>
+                        <form th:action="@{/transactions/details}" method="post">
+                            <input type="hidden" name="transactionId" th:value="${transaction.id}"/>
+                            <button type="submit" class="no-border info-icon" data-bs-toggle="tooltip"
+                                    title="Transaction info">
+                                <img class="info-icon" alt="Trash" height="40"
+                                     src="https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Information.svg/2048px-Information.svg.png"
+                                     width="40">
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="container mt-5" th:fragment="drinkEdit">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Edit Drink Details</h5>
+                    <form th:action="@{/drink/edit}" method="post">
+                        <div class="form-group"  hidden>
+                            <label for="name">Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="drinkId" name="drinkId" th:value="${drink.id}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="name" name="name" th:value="${drink.name}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <input type="text" class="form-control" id="type" name="type" th:value="${drink.type}">
+                        </div>
+                        <div class="form-group">
+                            <label for="alcoholPercentage">Alcohol Percentage</label>
+                            <input type="number" class="form-control" id="alcoholPercentage" name="alcoholPercentage" step="0.01" th:value="${drink.alcoholPercentage}">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" class="form-control" id="price" name="price" step="0.01" th:value="${drink.price}">
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select class="form-control" id="category" name="categoryId">
+                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id == drink.category.id}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pictureUrl">Picture URL</label>
+                            <input type="text" class="form-control" id="pictureUrl" name="pictureUrl" th:value="${drink.pictureUrl}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

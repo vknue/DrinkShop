@@ -1,0 +1,24 @@
+<div class="container mt-5" th:fragment="usersLog">
+    <div class="cartItems-items">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>User</th>
+                    <th>IP Address</th>
+                    <th>Date Time</th>
+                    <th>Event Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="cart-item" th:each="log : ${logs}">
+                    <td><span th:text="${log.name}"></span></td>
+                    <td><span th:text="${log.ipAddress}"></span></td>
+                    <td><span th:text="${log.loginDate}"></span></td>
+                    <td><span th:text="${log.eventType}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

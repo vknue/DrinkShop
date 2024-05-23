@@ -1,0 +1,26 @@
+<div class="container mt-5" th:fragment="transactionDetails">
+    <div class="cartItems-items">
+        <h2>Transaction with id <span th:text="${transaction.id}"></span> was done by user <span th:text="${transaction.user.username}"></span>
+            on <span th:text="${transaction.purchaseDate}"></span> and he payed with <span th:text="${transaction.type}"></span>
+        . This is the items that he bought. </h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Drink Name</th>
+                    <th>Price per one</th>
+                    <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="cart-item" th:each="item : ${transaction.items}">
+                    <td><span th:text="${item.drink.name}"></span></td>
+                    <td>$<span th:text="${item.drink.price}"></span></td>
+                    <td><span th:text="${item.quantity}"></span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <h1>Total Price: $<span th:text="${transaction.finalPrice}"></span></h1>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="nav-header" th:fragment="pageHeader" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Faux_Neon_Cocktails_Sign.svg/1575px-Faux_Neon_Cocktails_Sign.svg.png"
+             alt="Cocktails  logo" loading="lazy"/>
+    </div>
+    <div class="menu-items">
+        <div class=" navigation-links">
+            <ul>
+                <li th:onclick="|window.location.href='@{/shop/drinks}';|" class="btn btn-warning">Home</li>
+                <li sec:authorize="isAuthenticated()" th:onclick="|window.location.href='@{/transactions/index}';|" class="btn btn-warning">My Transactions</li>
+                <li th:onclick="|window.location.href='@{/cart/myCart}';|" class="btn btn-warning">My Cart</li>
+                <li sec:authorize="hasAuthority('ADMIN')" th:onclick="|window.location.href='@{/category/index}';|" class="btn btn-primary">Categories</li>
+                <li sec:authorize="hasAuthority('ADMIN')" th:onclick="|window.location.href='@{/transactions/admin/index}';|" class="btn btn-primary">All Transactions</li>
+                <li sec:authorize="hasAuthority('ADMIN')" th:onclick="|window.location.href='@{/drink/index}';|" class="btn btn-primary">Drinks</li>
+                <li sec:authorize="hasAuthority('ADMIN')" th:onclick="|window.location.href='@{/log/index}';|" class="btn btn-primary">Log</li>
+                <li sec:authorize="isAuthenticated()" th:onclick="|window.location.href='@{/logout}';|" class="btn btn-danger">Log Out</li>
+                <li sec:authorize="!isAuthenticated()" th:onclick="|window.location.href='@{/login}';|" class="btn btn-success">Log In</li>
+            </ul>
+        </div>
+        <div class="navigation-items">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Shopping_cart_icon.svg/2501px-Shopping_cart_icon.svg.png"
+                 alt="Cart" id="cart-icon" th:onclick="|window.location.href='@{/cart/myCart}';|">
+        </div>
+    </div>
+</div>
+
+
+

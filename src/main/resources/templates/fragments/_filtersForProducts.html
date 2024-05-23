@@ -1,0 +1,10 @@
+<div class="filters-div" th:fragment="filtersForProducts">
+    <h1>Drink Categories</h1>
+    <hr />
+    <ul>
+        <li><span>All</span></li>
+        <li th:each="category : ${categories}">
+            <span th:text="${category.name}"></span>
+        </li>
+    </ul>
+</div>

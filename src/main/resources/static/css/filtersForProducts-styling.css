@@ -1,0 +1,21 @@
+.filters-div li {
+    list-style: none;
+    margin: 5px 0;
+    border-left: 2px solid #f6ff00;
+    background: rgb(246, 255, 0);
+    background: linear-gradient(90deg, rgba(246, 255, 0, 1) 0%, rgba(244, 253, 255, 0) 42%);
+    border-radius: 15px;
+    padding: 8px;
+}
+
+.filters-div {
+    height: 100%;
+    background-image: url("https://png.pngtree.com/png-vector/20230326/ourmid/pngtree-realistic-water-droplets-element-vector-png-image_6669820.png");
+    background-size: contain;
+}
+
+.filters-div > h1 {
+    text-align: center;
+    filter: drop-shadow(0 8px 5px ghostwhite);
+}
+

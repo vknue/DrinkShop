@@ -1,0 +1,47 @@
+<div class="container mt-5" th:fragment="drinks">
+    <div class="cartItems-items">
+        <a th:onclick="|window.location.href='@{/drink/get/add}';|" class="btn btn-primary btn-block" style="margin-bottom: 25px">Add a new drink</a>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Drink Name</th>
+                    <th>Type</th>
+                    <th>Alcohol Percentage</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Picture</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="cart-item" th:each="drink : ${drinks}">
+                    <td><span th:text="${drink.name}"></span></td>
+                    <td><span th:text="${drink.type}"></span></td>
+                    <td><span th:text="${drink.alcoholPercentage}"></span></td>
+                    <td><span th:text="${drink.price}"></span></td>
+                    <td><span th:text="${drink.category.name}"></span></td>
+                    <td><img th:attr="src=${drink.pictureUrl}" width="45" height="80" alt="Tooltip Image"></td>
+                    <td><form th:action="@{/drink/delete}"  method="post">
+                        <input type="hidden" name="drinkId" th:value="${drink.id}"/>
+                        <button type="submit" class="no-border" data-bs-toggle="tooltip" title="Add To Cart">
+                            <img class="delete-icon" alt="Trash" height="40"
+                                 src="https://cdn-icons-png.flaticon.com/512/5028/5028066.png"
+                                 width="40">
+                        </button>
+                    </form><form th:action="@{/drink/get/edit}"  method="get">
+                        <input type="hidden" name="drinkId" th:value="${drink.id}"/>
+                        <button type="submit" class="no-border" data-bs-toggle="tooltip" title="Add To Cart">
+                            <img class="delete-icon" alt="Trash" height="40"
+                                 src="https://cdn-icons-png.freepik.com/512/5251/5251816.png"
+                                 width="40">
+                        </button>
+                    </form></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

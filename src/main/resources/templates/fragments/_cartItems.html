@@ -1,0 +1,74 @@
+<div class="container mt-5" th:fragment="cartItems">
+    <div class="cartItems-items">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Drink Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="cart-item" th:each="cartItem : ${cartItems}">
+                    <td><span th:text="${cartItem.drink.name}"></span></td>
+                    <td><span th:text="${cartItem.drink.price}"></span></td>
+                    <td>
+                        <div class="quantityCell">
+
+                            <form th:action="@{/cart/removeOne}" method="post">
+                                <input type="hidden" name="drinkId" th:value="${cartItem.drink.id}"/>
+                                <button type="submit" class="minusplus no-border" data-bs-toggle="tooltip"
+                                        title="Add To Cart">-
+                                </button>
+                            </form>
+
+                            <span th:text="${cartItem.quantity}"></span>
+
+                            <form th:action="@{/cart/addOne}" method="post">
+                                <input type="hidden" name="drinkId" th:value="${cartItem.drink.id}"/>
+                                <button type="submit" class="minusplus no-border" data-bs-toggle="tooltip"
+                                        title="Add To Cart">+
+                                </button>
+                            </form>
+
+                        </div>
+                    </td>
+                    <td><span th:text="${cartItem.totalPrice}"></span></td>
+                    <td>
+                        <form th:action="@{/cart/removeAll}" method="post">
+                            <input type="hidden" name="drinkId" th:value="${cartItem.drink.id}"/>
+                            <button type="submit" class="no-border" data-bs-toggle="tooltip" title="Add To Cart">
+                                <img class="delete-icon" alt="Trash" height="40"
+                                     src="https://cdn-icons-png.flaticon.com/512/5028/5028066.png"
+                                     width="40">
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <div id="totalPrice">
+                <h1>Total: </h1>
+                <h1 class="font-effect-fire">$</h1>
+                <h1 class="font-effect-fire" th:text="${totalPrice}"></h1>
+            </div>
+            <div>
+                <button th:onclick="|window.location.href='@{/cart/checkout}';|" class="btn btn-primary btn-lg active">
+                    <img src="https://pngimg.com/d/money_PNG3537.png" height="70" width="100" alt="Cash">
+                </button>
+                <button th:onclick="|window.location.href='@{/payment/payPayPal}';|">
+                    <img src="https://pngimg.com/d/paypal_PNG1.png" height="70" width="100" alt="PayPal"/>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

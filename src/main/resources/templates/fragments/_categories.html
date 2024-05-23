@@ -1,0 +1,55 @@
+<div class="container mt-5" th:fragment="categories">
+    <div class="cartItems-items">
+        <div class="table-responsive">
+            <a th:onclick="|window.location.href='@{/category/add}';|" class="btn btn-primary btn-block" style="margin-bottom: 25px">Add a new category</a>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Cattegory Name</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="cart-item" th:each="category : ${categories}">
+                    <td><span th:text="${category.name}"></span></td>
+
+                    <td>
+                        <form th:action="@{/category/delete}" method="post">
+                            <input type="hidden" name="categoryId" th:value="${category.id}"/>
+                            <button th:attr="data-id=${category.id}" onclick="deleteCategory(event, this)"
+                                    class="no-border delete-icon" data-bs-toggle="tooltip" title="Delete">
+                                <img class="delete-icon" alt="Trash" height="40"
+                                     src="https://cdn-icons-png.flaticon.com/512/5028/5028066.png"
+                                     width="40">
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<script th:inline="javascript">
+    function deleteCategory(event, button) {
+        event.preventDefault();
+        var drinkId = $(button).data("id");
+        $.ajax({
+            url: "/category/delete",
+            type: "POST",
+            data: {categoryId: drinkId},
+            success: [
+                function (response) {
+                    event.preventDefault()
+                    window.location.href = "/category/index";
+                }
+            ],
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+</script>

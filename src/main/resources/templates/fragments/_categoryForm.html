@@ -1,0 +1,18 @@
+<div class="container mt-5" th:fragment="categoryForm">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Enter the name of the category</h5>
+                    <form  th:action="@{/category/addCategory}" method="post">
+                        <div class="form-group">
+                            <label for="name">Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
